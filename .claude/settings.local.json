@@ -6,7 +6,10 @@
       "Bash(git branch:)",
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git push:*)"
     ]
   }
 }
