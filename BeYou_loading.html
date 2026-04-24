@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///C:/Users/vikto/Desktop/taff/beyou_web/beyou_site_v7_clean.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeYou — Formation &amp; Accompagnement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./BeYou v7 clean_files/css2" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--navy: #4a5f80;
+--mauve: #8b6570;
+--gold: #d4a832;
+--gold-bright: #e8c040;
+--cream: #f5f0e8;
+--dark: #0d0d0d;
+--text-light: #e8e2d9;
+--bg: #f4efe6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(--bg);
+color: #2a2520;
+font-family: 'Raleway', sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+#hero {
+position: relative;
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+background: #f4efe6;
+}
+
+/* subtle texture */
+#hero::before {
+content: '';
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 70% 60% at 50% 45%, rgba(212,168,50,0.07) 0%, transparent 70%),
+radial-gradient(ellipse 100% 100% at 50% 50%, #f4efe6 0%, #ede5d8 100%);
+z-index: 0;
+}
+
+/* ── COMPASS ─────────────────────────────────── */
+.compass-wrapper {
+position: relative;
+width: min(480px, 78vw);
+height: min(480px, 78vw);
+z-index: 2;
+cursor: pointer;
+}
+
+/* The SVG compass - only the inner group spins */
+.compass-svg {
+width: 100%;
+height: 100%;
+overflow: visible;
+}
+
+/* spinning group inside SVG */
+#rose-spin {
+transform-origin: 200px 200px;
+animation: spin 28s linear infinite;
+}
+@keyframes spin {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+#rose-spin:hover {
+  animation-play-state: paused;
+}
+
+/* ── TAGLINE ─────────────────────────────────── */
+.hero-tagline {
+position: absolute;
+bottom: 85px;
+left: 50%;
+transform: translateX(-50%);
+text-align: center;
+z-index: 2;
+animation: fadeUp 1.2s ease 0.5s both;
+}
+.hero-tagline h1 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 42px;
+font-weight: 300;
+letter-spacing: 0.04em;
+color: #2a2520;
+line-height: 1.1;
+}
+.hero-tagline h1 em {
+font-style: italic;
+color: var(--mauve);
+}
+.hero-tagline p {
+margin-top: 10px;
+font-size: clamp(10px, 1.2vw, 14px);
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--navy);
+opacity: 0.7;
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.scroll-hint {
+position: absolute; bottom: 30px; left: 50%;
+transform: translateX(-50%);
+z-index: 2;
+display: flex; flex-direction: column; align-items: center; gap: 6px;
+opacity: 0.35;
+animation: bob 2s ease-in-out infinite;
+color: #2a2520;
+}
+.scroll-hint span { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; }
+.scroll-hint svg { width: 18px; }
+@keyframes bob {
+0%, 100% { transform: translateX(-50%) translateY(0); }
+50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── FIXED SIDE NAV ──────────────────────────── */
+.side-nav {
+position: fixed;
+right: 24px; top: 50%;
+transform: translateY(-50%);
+z-index: 100;
+display: flex; flex-direction: column; gap: 16px;
+}
+.side-dot {
+width: 8px; height: 8px;
+border-radius: 50%;
+background: #c8bfb0;
+border: 1px solid #a0968a;
+cursor: pointer;
+transition: background 0.3s, transform 0.3s;
+}
+.side-dot.active, .side-dot:hover {
+background: var(--gold);
+transform: scale(1.4);
+}
+
+/* ── SECTIONS ────────────────────────────────── */
+section {
+min-height: 100vh;
+padding: 120px 10vw 80px;
+position: relative;
+background: #f4efe6;
+}
+section:nth-child(even) { background: #ede5d8; }
+
+.section-eyebrow {
+font-size: 11px; letter-spacing: 0.35em;
+text-transform: uppercase; color: var(--gold);
+margin-bottom: 18px;
+}
+
+/* ===== FONDUE DE COULEURS PASTELS ===== */
+/* Debut - beige initial */
+section#hero { background: linear-gradient(180deg, #f4efe6 0%, #faf6f0 100%); }
+/* Accompagnement - beige clair */
+section#coachings { background: linear-gradient(180deg, #faf6f0 0%, #f9f7f2 100%); }
+/* Connaissance de soi - bleu clair */
+section#connaissance { background: linear-gradient(180deg, #f9f7f2 0%, #e8f0f5 50%, #d4e4f0 100%); }
+/* Reconversion - vert pastel */
+section#reconversion { background: linear-gradient(180deg, #d4e4f0 0%, #d4e8d0 50%, #c8e0c0 100%); }
+/* Gestion émotions - mauve */
+section#gestion-emotions { background: linear-gradient(180deg, #c8e0c0 0%, #f0e8f5 50%, #e8d8f0 100%); }
+/* Témoignages - retour au beige */
+section#temoignages { background: linear-gradient(180deg, #e8d8f0 0%, #f9f7f2 50%, #faf6f0 100%); }
+/* Parcours - beige final */
+section#parcours, footer { background: linear-gradient(180deg, #faf6f0 0%, #f4efe6 100%); }
+.section-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(34px, 5vw, 62px);
+font-weight: 300; line-height: 1.05;
+color: #1e1a16; max-width: 700px; margin-bottom: 40px;
+}
+.section-title em { font-style: italic; color: var(--mauve); }
+.section-text {
+max-width: 620px; line-height: 1.85;
+font-size: clamp(14px, 1.5vw, 16px);
+color: #5a5248; margin-bottom: 32px;
+}
+
+/* ── CONTENT WITH IMAGE LAYOUT ───────────────── */
+.section-content {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+align-items: center;
+margin-top: 48px;
+}
+.section-content-text {
+max-width: 600px;
+}
+.section-content-text h3 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 28px;
+font-weight: 400;
+margin-bottom: 24px;
+color: #1e1a16;
+}
+.section-content-text p {
+font-size: 15px;
+line-height: 1.8;
+color: #5a5248;
+margin-bottom: 20px;
+}
+.section-content-image {
+position: relative;
+}
+.section-content-image img {
+width: 100%;
+height: 500px;
+object-fit: contain;
+border-radius: 8px;
+box-shadow: none;
+}
+
+@media (max-width: 768px) {
+.section-content {
+grid-template-columns: 1fr;
+gap: 40px;
+}
+.section-content-image img {
+height: 380px;
+}
+}
+
+/* ── CARDS ───────────────────────────────────── */
+.cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 32px; margin-top: 48px;
+}
+.card {
+border: none;
+ border-radius: 20px;
+padding: 40px 32px;
+position: relative; overflow: hidden;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+background: #ffffff;
+}
+.card::before {
+content: ''; position: absolute; top: 0; left: 0;
+width: 3px; height: 0;
+background: var(--gold);
+transition: height 0.4s ease;
+}
+.card:hover { border-color: var(--navy); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(74,95,128,0.15); }
+.card-icon { font-size: 32px; margin-bottom: 18px; display: block; transition: transform 0.3s ease; }
+.card:hover .card-icon { transform: scale(1.1); }
+.card:hover::before { height: 100%; }
+.card-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+.card h3 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 21px; font-weight: 400;
+color: #1e1a16; margin-bottom: 10px;
+}
+.card p { font-size: 13.5px; line-height: 1.7; color: #7a7268; }
+
+/* ── TESTIMONIALS ────────────────────────────── */
+.testimonials {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 32px; margin-top: 48px;
+}
+.testimonial {
+padding: 36px 32px;
+ border-radius: 20px;
+border: none;
+background: #ffffff;
+box-shadow: 0 6px 24px rgba(74,95,128,0.08);
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position: relative;
+}
+.testimonial:hover {
+ transform: translateY(-6px);
+ box-shadow: 0 10px 32px rgba(74,95,128,0.12);
+}
+.testimonial::before {
+content: '\201C';
+font-family: 'Cormorant Garamond', serif;
+font-size: 72px; color: var(--mauve);
+opacity: 0.2; position: absolute;
+top: 8px; left: 20px; line-height: 1;
+}
+.testimonial p {
+font-family: 'Cormorant Garamond', serif;
+font-style: italic;
+font-size: clamp(15px, 1.7vw, 19px);
+color: #2a2520; line-height: 1.6;
+margin-bottom: 18px; position: relative; z-index: 1;
+}
+.testimonial cite {
+font-style: normal; font-size: 11px;
+letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+}
+.stars { color: var(--gold); font-size: 13px; margin-bottom: 12px; }
+
+/* ── TIMELINE ────────────────────────────────── */
+.timeline { position: relative; margin-top: 48px; padding-left: 40px; }
+.timeline::before {
+content: ''; position: absolute;
+left: 8px; top: 0; bottom: 0; width: 1px;
+background: linear-gradient(to bottom, var(--gold), var(--navy), transparent);
+}
+.timeline-item { position: relative; margin-bottom: 48px; }
+.timeline-item::before {
+content: ''; position: absolute;
+left: -36px; top: 6px;
+width: 10px; height: 10px; border-radius: 50%;
+background: var(--gold);
+box-shadow: 0 0 10px rgba(212,168,50,0.5);
+}
+.timeline-year {
+font-size: 11px; letter-spacing: 0.3em;
+text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.timeline-item h3 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 22px; font-weight: 400; color: #1e1a16; margin-bottom: 8px;
+}
+.timeline-item p { font-size: 14px; line-height: 1.7; color: #5a5248; max-width: 560px; }
+
+/* ── CTA ─────────────────────────────────────── */
+.cta-btn {
+display: inline-block; margin-top: 32px;
+padding: 16px 40px;
+ border-radius: 30px;
+border: 1px solid var(--gold); color: var(--gold);
+font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+cursor: pointer; background: transparent;
+transition: background 0.3s, color 0.3s;
+font-family: 'Raleway', sans-serif;
+}
+.cta-btn:hover { background: var(--gold); color: #1e1a16; }
+
+/* ── DIVIDER ─────────────────────────────────── */
+.divider { width: 40px; height: 1px; background: var(--gold); margin: 20px 0 36px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+footer {
+padding: 60px 10vw 40px; border-top: 1px solid #d8cfc4;
+display: flex; flex-direction: column; align-items: center;
+gap: 16px; text-align: center; background: #ede5d8;
+}
+footer p { font-size: 11px; letter-spacing: 0.2em; color: #8a8276; text-transform: uppercase; }
+
+/* ── FADE-IN IMAGES ────────────────────────── */
+.fade-in-image {
+ opacity: 0;
+ transform: translateY(20px);
+ transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+ will-change: opacity, transform;
+}
+.fade-in-image.visible {
+ opacity: 1;
+ transform: translateY(0);
+}
+
+/* ── REVEAL ──────────────────────────────────── */
+.reveal {
+opacity: 0; transform: translateY(28px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav class="side-nav" id="sideNav">
+<div class="side-dot" onclick="scrollToSection(0)"></div>
+<div class="side-dot" onclick="scrollToSection(1)"></div>
+<div class="side-dot active" onclick="scrollToSection(2)"></div>
+<div class="side-dot" onclick="scrollToSection(3)"></div>
+<div class="side-dot" onclick="scrollToSection(4)"></div>
+<div class="side-dot" onclick="scrollToSection(5)"></div>
+<div class="side-dot" onclick="scrollToSection(6)"></div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<div id="hero">
+<div class="compass-wrapper" id="compassWrap">
+
+<!-- SVG COMPASS — only #rose-spin rotates, letters stay fixed -->
+<svg class="compass-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Gold radial for center orb -->
+<radialgradient id="goldOrb" cx="50%" cy="40%" r="55%">
+<stop offset="0%" stop-color="#f0d060"></stop>
+<stop offset="60%" stop-color="#d4a832"></stop>
+<stop offset="100%" stop-color="#a07820"></stop>
+</radialgradient>
+<!-- Slight inner circle glow -->
+<radialgradient id="innerOrb" cx="50%" cy="40%" r="55%">
+<stop offset="0%" stop-color="#e8c84a"></stop>
+<stop offset="100%" stop-color="#c49020"></stop>
+</radialgradient>
+<filter id="softglow">
+<fegaussianblur stdDeviation="3" result="blur"></fegaussianblur>
+<femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+</filter>
+</defs>
+
+<!-- ═══ SPINNING GROUP ═══ -->
+<g id="rose-spin">
+
+<!-- Outer circle -->
+<circle cx="200" cy="200" r="155" fill="none" stroke="#4a5f80" stroke-width="1.5" opacity="0.7"></circle>
+
+<!-- 4 yellow diamond ornaments on circle at 45° -->
+<!-- NW -->
+<polygon points="200,60 206,72 200,84 194,72" fill="#d4a832" transform="rotate(-45,200,200)"></polygon>
+<!-- NE -->
+<polygon points="200,60 206,72 200,84 194,72" fill="#d4a832" transform="rotate(45,200,200)"></polygon>
+<!-- SE -->
+<polygon points="200,60 206,72 200,84 194,72" fill="#d4a832" transform="rotate(135,200,200)"></polygon>
+<!-- SW -->
+<polygon points="200,60 206,72 200,84 194,72" fill="#d4a832" transform="rotate(225,200,200)"></polygon>
+
+<!-- MAIN 8-POINT STAR -->
+<!-- Cardinal arms (N-S mauve, E-W navy/blue-grey) -->
+<!-- North arm - mauve -->
+<polygon points="200,48 207,190 200,210 193,190" fill="#8b6570" opacity="0.9"></polygon>
+<!-- South arm - mauve -->
+<polygon points="200,352 207,210 200,190 193,210" fill="#8b6570" opacity="0.9"></polygon>
+<!-- East arm - navy -->
+<polygon points="352,200 210,207 190,200 210,193" fill="#4a5f80" opacity="0.85"></polygon>
+<!-- West arm - navy -->
+<polygon points="48,200 190,207 210,200 190,193" fill="#4a5f80" opacity="0.85"></polygon>
+
+<!-- Diagonal arms - gold -->
+<!-- NE diagonal -->
+<polygon points="283,117 207,193 195,207 181,181" fill="#d4a832" opacity="0.9"></polygon>
+<!-- SW diagonal -->
+<polygon points="117,283 193,207 207,195 219,219" fill="#d4a832" opacity="0.9"></polygon>
+<!-- NW diagonal -->
+<polygon points="117,117 193,193 207,207 181,219" fill="#d4a832" opacity="0.85"></polygon>
+<!-- SE diagonal -->
+<polygon points="283,283 207,207 193,193 219,181" fill="#d4a832" opacity="0.85"></polygon>
+
+<!-- Center orb outer ring -->
+<circle cx="200" cy="200" r="42" fill="url(#goldOrb)"></circle>
+<!-- Inner ring (the "O" of BeYOU) -->
+<circle cx="200" cy="200" r="28" fill="none" stroke="#4a5f80" stroke-width="3.5" opacity="0.8"></circle>
+<!-- Center fill -->
+<circle cx="200" cy="200" r="24" fill="url(#innerOrb)" opacity="0.9"></circle>
+<!-- Tiny center dot -->
+<circle cx="200" cy="200" r="5" fill="#4a5f80" opacity="0.6"></circle>
+
+</g>
+<!-- ═══ END SPINNING GROUP ═══ -->
+
+<!-- FIXED LETTERS — do not rotate -->
+<!-- B — top (North) -->
+<text x="200" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="600" fill="#8b6570" letter-spacing="0">B</text>
+
+<!-- E — bottom (South) -->
+<text x="200" y="378" text-anchor="middle" dominant-baseline="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="600" fill="#8b6570" letter-spacing="0">E</text>
+
+<!-- Y — left (West) -->
+<text x="24" y="204" text-anchor="middle" dominant-baseline="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="600" fill="#4a5f80" letter-spacing="0">Y</text>
+
+<!-- U — right (East) -->
+<text x="376" y="204" text-anchor="middle" dominant-baseline="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="600" fill="#4a5f80" letter-spacing="0">U</text>
+
+<!-- SECTION LABELS AROUND COMPASS -->
+<!-- Coachings (North) -->
+<g filter="url(#softglow)">
+<text x="200" y="-66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#d4a832" style="cursor:pointer" onclick="document.getElementById(&#39;coachings&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+ACCOMPAGNEMENTS</text>
+</g>
+
+<!-- Connaissance de soi (NE) -->
+<g filter="url(#softglow)">
+<text x="436" y="24" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#8b6570" style="cursor:pointer" onclick="document.getElementById(&#39;connaissance&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+CONNAISSANCE</text>
+</g>
+
+<!-- Reconversion (SE) -->
+<g filter="url(#softglow)">
+<text x="436" y="376" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#4a5f80" style="cursor:pointer" onclick="document.getElementById(&#39;reconversion&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+RECONVERSION</text>
+</g>
+
+<!-- Témoignages (South) -->
+<g filter="url(#softglow)">
+<text x="200" y="456" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#d4a832" style="cursor:pointer" onclick="document.getElementById(&#39;temoignages&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+TÉMOIGNAGES</text>
+</g>
+
+<!-- Gestion émotions (SW) -->
+<g filter="url(#softglow)">
+<text x="-26" y="376" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#8b6570" style="cursor:pointer" onclick="document.getElementById(&#39;gestion-emotions&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+ÉMOTIONS</text>
+</g>
+
+<!-- Parcours (NW) -->
+<g filter="url(#softglow)">
+<text x="-26" y="24" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="500" fill="#4a5f80" style="cursor:pointer" onclick="document.getElementById(&#39;parcours&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" opacity="0.8" class="label-hover">
+<animate attributeName="opacity" from="0.8" to="1" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="opacity" from="1" to="0.8" dur="0.3s" begin="mouseout" fill="freeze" />
+<animate attributeName="font-size" from="17" to="20" dur="0.3s" begin="mouseover" fill="freeze" />
+<animate attributeName="font-size" from="20" to="17" dur="0.3s" begin="mouseout" fill="freeze" />
+PARCOURS</text>
+</g>
+
+</svg>
+
+<!-- Small nav labels outside SVG -->
+<div id="navLabels"></div>
+</div>
+
+<div class="hero-tagline">
+<h1>Retrouvez votre <em>boussole intérieure</em></h1>
+</div>
+
+<div class="scroll-hint">
+<span>Explorer</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+<path d="M12 5v14M5 12l7 7 7-7"></path>
+</svg>
+</div>
+</div>
+
+<!-- ══ COACHINGS (OVERVIEW) ═══════════════════════════ -->
+<section id="coachings">
+<div class="section-eyebrow reveal visible">01 — Services</div>
+<h2 class="section-title reveal visible">Accompagnements</h2>
+<div class="divider reveal visible"></div>
+<p class="section-text reveal visible">
+Chaque parcours est unique. Je vous accompagne avec bienveillance et expertise à travers ces trois axes majeurs du développement personnel et professionnel.
+</p>
+<div class="cards">
+<div class="card reveal visible">
+<span class="card-icon">🔄</span>
+<h3>Reconversion professionnelle</h3>
+<p>Vous sentez que votre métier actuel ne vous correspond plus ? Vous rêvez d'une transition mais les doutes vous freinent ? Je vous accompagne dans cette démarche de changement pour clarifier votre projet, transformer vos peurs en énergie et construire une nouvelle vie professionnelle alignée avec qui vous êtes vraiment.</p>
+</div>
+<div class="card reveal visible">
+<span class="card-icon">🔍</span>
+<h3>Connaissance de soi</h3>
+<p>Comprendre vos mécanismes internes, vos schémas répétitifs, vos forces et vos besoins profonds. Ce coaching vous aide à développer une relation authentique avec vous-même, à reconnaître vos vraies aspirations et à oser vous affirmer dans votre singularité.</p>
+</div>
+<div class="card reveal visible">
+<span class="card-icon">🌊</span>
+<h3>Gestion des émotions</h3>
+<p>Apprendre à accueillir et à transformer vos émotions au lieu de les subir. Vous développez des outils concrets pour apaiser les tensions, naviguer dans les périodes difficiles et utiliser la force de vos émotions comme un carburant pour votre développement.</p>
+</div>
+</div>
+</section>
+
+<!-- ══ CONNAISSANCE DE SOI ═══════════════════════════ -->
+<section id="connaissance">
+<div class="section-eyebrow reveal visible">02 — Connaissance de soi</div>
+<h2 class="section-title reveal visible">Explorer vos <em>profondeurs</em></h2>
+<div class="divider reveal visible"></div>
+<div class="section-content">
+<div class="section-content-text reveal visible">
+<p>La connaissance de soi est le premier pas vers toute transformation. C'est un voyage intérieur pour comprendre qui vous êtes vraiment, au-delà des conditionnements et des attentes.</p>
+<p>Dans ce coaching, nous explorons ensemble vos schémas de pensée, vos croyances limitantes et vos ressources intérieures. Vous apprendrez à écouter vos besoins profonds, à reconnaître vos vraies aspirations et à développer une relation authentique avec vous-même.</p>
+<p>À travers des outils puissants d'introspection et de la pleine conscience, vous gagnerez en clarté et en sérénité pour oser vous affirmer pleinement dans votre singularité.</p>
+</div>
+<div class="section-content-image reveal visible">
+<img src="raymanta-mer.jpg" alt="Connaissance de soi">
+</div>
+</div>
+<button onclick="window.location.href='reservation.html'" class="cta-btn reveal visible">En savoir plus</button>
+</section>
+
+<!-- ══ RECONVERSION PROFESSIONNELLE ═══════════════════ -->
+<section id="reconversion">
+<div class="section-eyebrow reveal visible">03 — Reconversion</div>
+<h2 class="section-title reveal visible">Changer de <em>cap</em></h2>
+<div class="divider reveal visible"></div>
+<div class="section-content">
+<div class="section-content-text reveal visible">
+<p>Changer de voie professionnelle est une décision courageuse qui soulève autant d'espoirs que de doutes. C'est un moment de vie où vous ressentez profondément que votre métier actuel ne vous correspond plus.</p>
+<p>Je vous accompagne pas à pas dans cette transition majeure : du bilan de compétences pour clarifier vos forces, jusqu'à la construction d'un plan d'action concret et réaliste. Nous travaillerons également sur les peurs et les blocages qui freinent votre élan.</p>
+<p>Transformez votre vision en projet abouti et construisez avec confiance une nouvelle vie professionnelle qui vous ressemble.</p>
+</div>
+<div class="section-content-image reveal visible">
+<img src="nain_chemins.jpg" style="height: 650px;" alt="Reconversion professionnelle">
+</div>
+</div>
+<button onclick="window.location.href='reservation.html'" class="cta-btn reveal visible">Démarrer votre transition</button>
+</section>
+
+<!-- ══ GESTION DES ÉMOTIONS ═══════════════════════════ -->
+<section id="gestion-emotions">
+<div class="section-eyebrow reveal visible">04 — Émotions</div>
+<h2 class="section-title reveal visible">Maîtriser vos <em>émotions</em></h2>
+<div class="divider reveal visible"></div>
+<div class="section-content">
+<div class="section-content-text reveal visible">
+<p>Les émotions sont des alliées puissantes lorsqu'on sait les accueillir et les transformer. Au lieu de les subir, apprenez à les utiliser comme un carburant pour votre développement personnel.</p>
+<p>Grâce à des outils concrets et éprouvés (CNV, ACT, pleine conscience), vous développez la capacité de naviguer sereinement dans les périodes difficiles. Vous apprendrez à apaiser les tensions, à ancrer votre énergie et à transformer vos émotions bloquantes en forces motrices.</p>
+<p>Ce travail vous permettra de gagner en résilience, en sérénité et en créativité au quotidien.</p>
+</div>
+<div class="section-content-image reveal visible">
+<img src="emotionsjonglerimage.jpg" alt="Gestion des émotions">
+</div>
+</div>
+<button onclick="window.location.href='reservation.html'" class="cta-btn reveal visible">Apprivoiser vos émotions</button>
+</section>
+
+<!-- ══ TÉMOIGNAGES ═══════════════════════════════════ -->
+<section id="temoignages">
+<div class="section-eyebrow reveal visible">05 — Voix</div>
+<h2 class="section-title reveal visible">Avis &amp; <em>témoignages</em></h2>
+<div class="divider reveal visible"></div>
+<p class="section-text reveal visible">
+Les transformations les plus belles sont celles que vous vivez vous-mêmes.
+Voici ce que disent certaines personnes accompagnées.
+</p>
+  <div class="testimonials">
+    <div class="testimonial reveal visible">
+      <div class="stars">★★★★★</div>
+      <p>Mon bilan vient de se terminer et grâce à ma consultante, j'ai réussi à me réorienter vers un nouveau secteur d'activité. Je suis très reconnaissante pour toute l'aide que m'a apportée ma consultante à tous niveaux. Il y a eu beaucoup de travail à fournir, mais je n'ai JAMAIS été seule. MERCI NF</p>
+      <cite>— Nathalie FLORES, il y a 5 ans</cite>
+    </div>
+    <div class="testimonial reveal visible">
+      <div class="stars">★★★★★</div>
+      <p>Monica est une personne qui sera très bien s'adapter à votre profil, quel qu'il soit. C'est avec beaucoup de tact et de bienveillance que se fait son accompagnement vers la réflexion et l'analyse de votre parcours pro. Elle saura vous transmettre de bonnes méthodes afin de vous re-découvrir et de passer à l'action. Visité en juillet 2020</p>
+      <cite>— Armand Selbmann, il y a 4 ans</cite>
+    </div>
+    <div class="testimonial reveal visible">
+      <div class="stars">★★★★★</div>
+      <p>J'ai eu la chance d'être accompagné et coaché à deux reprises par Monica au cours des 6 dernières années. Et les 2 fois furent bénéfiques et concluent de réussite !! Monica, je te remercie pour tes conseils, ta bienveillance et ton accompagnement. Visité en mars 2021.</p>
+      <cite>— Maéva Pras, il y a 4 ans</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARCOURS ══════════════════════════════════════ -->
+<section id="parcours">
+<div class="section-eyebrow reveal visible">06 — Histoire</div>
+<h2 class="section-title reveal visible">Mon <em>parcours</em></h2>
+<div class="divider reveal visible"></div>
+<p class="section-text reveal visible">
+Mon chemin vers le coaching a lui-même été une reconversion —
+une aventure personnelle qui nourrit aujourd'hui ma pratique
+et ma façon d'accompagner chaque personne.
+</p>
+<div class="timeline">
+<div class="timeline-item reveal visible">
+<div class="timeline-year">Formation initiale</div>
+<h3>Psychologie &amp; Sciences humaines</h3>
+<p>Études approfondies en psychologie comportementale et émotionnelle, fondations de ma compréhension de l'être humain.</p>
+</div>
+<div class="timeline-item reveal visible">
+<div class="timeline-year">Certification</div>
+<h3>Coach certifiée ICF</h3>
+<p>Formation professionnelle au coaching selon les standards internationaux ICF — écoute active, questionnement puissant, posture de coach.</p>
+</div>
+<div class="timeline-item reveal visible">
+<div class="timeline-year">Spécialisation</div>
+<h3>Gestion des émotions &amp; Intelligence émotionnelle</h3>
+<p>Approfondissement des approches centrées sur les émotions : CNV, ACT, pleine conscience appliquée.</p>
+</div>
+<div class="timeline-item reveal visible">
+<div class="timeline-year">Aujourd'hui</div>
+<h3>BeYou — Formation &amp; Accompagnement</h3>
+<p>Création de BeYou pour proposer un accompagnement humain, ancré et transformateur à tous ceux qui cherchent leur propre boussole.</p>
+</div>
+</div>
+<button onclick="window.location.href='reservation.html'" class="cta-btn reveal visible">Me contacter</button>
+</section>
+
+<footer>
+<!-- SVG compass mini (static) -->
+<svg width="64" height="64" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" opacity="0.5">
+<circle cx="200" cy="200" r="155" fill="none" stroke="#4a5f80" stroke-width="2"></circle>
+<polygon points="200,55 207,190 200,210 193,190" fill="#8b6570"></polygon>
+<polygon points="200,345 207,210 200,190 193,210" fill="#8b6570"></polygon>
+<polygon points="345,200 210,207 190,200 210,193" fill="#4a5f80"></polygon>
+<polygon points="55,200 190,207 210,200 190,193" fill="#4a5f80"></polygon>
+<circle cx="200" cy="200" r="40" fill="#d4a832"></circle>
+<circle cx="200" cy="200" r="26" fill="none" stroke="#4a5f80" stroke-width="3"></circle>
+<text x="200" y="28" text-anchor="middle" font-family="serif" font-size="36" fill="#8b6570" font-weight="600">B</text>
+<text x="200" y="385" text-anchor="middle" font-family="serif" font-size="36" fill="#8b6570" font-weight="600">E</text>
+<text x="22" y="208" text-anchor="middle" font-family="serif" font-size="36" fill="#4a5f80" font-weight="600">Y</text>
+<text x="378" y="208" text-anchor="middle" font-family="serif" font-size="36" fill="#4a5f80" font-weight="600">U</text>
+</svg>
+<p>BeYou · Formation &amp; Accompagnement</p>
+<p style="font-size:10px; letter-spacing:0.1em; color:#b0a898">© 2025 — Tous droits réservés</p>
+</footer>
+
+<script>
+const sections = ['hero','coachings','connaissance','reconversion','gestion-emotions','temoignages','parcours'];
+const dots = document.querySelectorAll('.side-dot');
+
+function scrollToSection(i) {
+document.getElementById(sections[i]).scrollIntoView({behavior:'smooth'});
+}
+
+window.addEventListener('scroll', () => {
+const mid = window.scrollY + window.innerHeight/2;
+sections.forEach((id,i) => {
+ const el = document.getElementById(id);
+ if (!el) return;
+ if (mid >= el.offsetTop && mid < el.offsetTop + el.offsetHeight) {
+ dots.forEach(d => d.classList.remove('active'));
+ dots[i].classList.add('active');
+ }
+});
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+entries.forEach((e,i) => {
+ if (e.isIntersecting) {
+ setTimeout(() => e.target.classList.add('visible'), i*80);
+ obs.unobserve(e.target);
+ }
+});
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Fade-in images on scroll
+const imgObserver = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ entry.target.classList.add('visible');
+ imgObserver.unobserve(entry.target);
+ }
+ });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('img').forEach(img => {
+ img.classList.add('fade-in-image');
+ imgObserver.observe(img);
+});
+</script>
+
+</body></html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeYou - Prendre Rendez-vous</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #4a5f80;
+      --mauve: #8b6570;
+      --gold: #d4a832;
+      --cream: #f5f0e8;
+      --bg: #f4efe6;
+    }
+
+    body {
+      background: var(--bg);
+      color: #2a2520;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      padding: 60px 10vw;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.9);
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(74,95,128,0.1);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #8a8276;
+      margin-bottom: 36px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--navy);
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d8cfc4;
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 15px;
+      background: rgba(255,255,255,0.7);
+      transition: border-color 0.3s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212,168,50,0.2);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .radio-option {
+      position: relative;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .radio-option label {
+      display: block;
+      padding: 16px;
+      border: 2px solid #f0ebe3;
+      border-radius: 12px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.7);
+      transition: all 0.3s ease;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .radio-option label:hover {
+      border-color: var(--gold);
+      background: rgba(245,240,232,0.5);
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      border-color: var(--gold);
+      background: rgba(212,168,50,0.1);
+    }
+
+    .coach-name {
+      display: block;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .coach-desc {
+      font-size: 12px;
+      color: #8a8276;
+    }
+
+    .cta-button {
+      width: 100%;
+      padding: 16px 32px;
+      background: var(--gold);
+      color: #1e1a16;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #b89328;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(74,95,128,0.15);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      text-align: center;
+      width: 100%;
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+    }
+
+    .required {
+      color: #d32f2f;
+    }
+
+    .success-message {
+      display: none;
+      background: rgba(76,175,80,0.1);
+      border: 1px solid #4CAF50;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="BeYou_loading.html" class="back-link">← Retour au site</a>
+
+  <div class="container">
+    <h1>Prendre Rendez-vous</h1>
+    <p class="subtitle">Choisissez votre accompagnement et laissez-moi vos coordonnées</p>
+
+    <form id="bookingForm" action="mailto:totoretmo@gmail.com" method="POST" enctype="text/plain">
+
+      <div class="form-group">
+        <label for="name">Nom complet <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse email <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label>Choisissez votre accompagnement <span class="required">*</span></label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="reconversion" name="coaching" value="Reconversion professionnelle" required>
+            <label for="reconversion">
+              <span class="coach-name">Reconversion professionnelle</span>
+              <span class="coach-desc">Changer de voie avec confiance</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="connaissance" name="coaching" value="Connaissance de soi" required>
+            <label for="connaissance">
+              <span class="coach-name">Connaissance de soi</span>
+              <span class="coach-desc">Explorez vos profondeurs</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="emotions" name="coaching" value="Gestion des émotions" required>
+            <label for="emotions">
+              <span class="coach-name">Gestion des émotions</span>
+              <span class="coach-desc">Transformez vos émotions en force</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Votre message</label>
+        <textarea id="message" name="message" placeholder="Parlez-moi de vous, de vos attentes, de vos questionnements..."></textarea>
+      </div>
+
+      <div class="success-message" id="successMessage">
+        <strong>Merci !</strong> Votre demande a bien été envoyée. Je vous réponds dans les plus brefs délais.
+      </div>
+
+      <button type="submit" class="cta-button">Envoyer ma demande</button>
+
+      <p style="text-align: center; margin-top: 16px; font-size: 12px; color: #8a8276;">
+        Les informations seront envoyées par email. Vous recevrez une copie.
+      </p>
+    </form>
+  </div>
+
+  <a href="BeYou_loading.html" class="back-link">← Retour au site</a>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      // Construction du corps du message
+      const subject = `Demande de rendez-vous - ${data.name}`;
+      const body = `
+Nouvelle demande de rendez-vous
+
+Informations personnelles :
+- Nom : ${data.name}
+- Email : ${data.email}
+- Téléphone : ${data.phone || 'Non fourni'}
+
+Accompagnement choisi :
+- ${data.coaching}
+
+Message :
+${data.message || 'Aucun message'}
+      `.trim();
+
+      // Construction de l'URL mailto
+      const mailtoUrl = `mailto:${this.getAttribute('action').split('mailto:')[1] || 'totoretmo@gmail.com'}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Ouvrir le client email
+      window.location.href = mailtoUrl;
+
+      // Afficher le message de succès
+      document.getElementById('successMessage').style.display = 'block';
+
+      // Réinitialiser le formulaire après 2 secondes
+      setTimeout(() => {
+        this.reset();
+        document.getElementById('successMessage').style.display = 'none';
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>
